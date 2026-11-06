@@ -1,0 +1,34 @@
+# 训练超参默认值。所有键均可被 train.py 命令行参数覆盖。
+model_name: xlm-roberta-base
+use_crf: false
+single_label: false
+seed: 42
+
+# 编码与长文档
+max_length: 512
+stride: 128          # 滑动窗口 token 重叠步长
+merge_gap: 0         # 推理时同类别片段合并的最大间隔(字符)
+
+# 优化
+lr_encoder: 2.0e-5
+lr_head: 1.0e-3      # CRF 层与分类头学习率
+epochs: 10           # 大数据集建议 3-5
+batch_size: 16
+grad_accum: 1
+warmup_ratio: 0.1    # linear warmup
+weight_decay: 0.01
+max_grad_norm: 1.0
+fp16: false
+patience: 3          # early stopping(按 Dev 部分匹配 Micro-F1)
+max_steps: -1        # >0 时限制总步数(冒烟测试用)
+
+# Dev 评测
+dev_sample: -1       # >0 时 epoch 间验证抽样文档数以加速;最终报告必须用完整 Dev/Eval
+deduplicate_train_windows: true  # 滑窗重叠 token 只在首次出现窗口进入训练 loss
+lazy_windows: false  # mhbio_crf 训练窗口懒加载;省主机内存但会增加重复 tokenization
+lazy_window_cache_docs: 2
+
+# 类别权重接口:O 标签权重 <1.0 可缓解 O 主导。默认 1.0 = 不加权。
+class_weight_O: 1.0
+
+num_workers: 0

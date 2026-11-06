@@ -1,0 +1,30 @@
+model_type: mhbio_crf
+model_name: hfl/chinese-roberta-wwm-ext
+tokenizer_use_fast: true
+
+language_model_overrides:
+  zh: hfl/chinese-roberta-wwm-ext
+  ar: aubmindlab/bert-base-arabertv02
+  ru: ai-forever/ruRoberta-large
+  lt: EMBEDDIA/litlat-bert
+  rw: castorini/afriberta_large
+
+max_length: 512
+stride: 128
+dropout: 0.1
+head_weighting: none
+negative_head_weight: 0.1
+aux_bio_ce_weight: 0.2
+bio_positive_weight: 8.0
+forbidden_score: -10000.0
+
+encoder_lr: 2.0e-5
+head_lr: 2.0e-4
+weight_decay: 0.01
+warmup_ratio: 0.1
+grad_clip: 1.0
+batch_size: 8
+grad_accumulation: 2
+epochs: 10
+early_stopping_patience: 3
+selection_metric: dev_partial_micro_f1

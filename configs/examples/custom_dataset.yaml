@@ -1,0 +1,9 @@
+# Copy this file and replace the dataset name, language, paths and labels.
+# All paths are relative to the project root.
+name: custom
+language: zh
+processed_dir: data/processed/custom
+labels:
+  - technique_a
+  - technique_b
+seed: 42

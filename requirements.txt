@@ -1,0 +1,15 @@
+# Python >= 3.10
+#
+# Install torch and torch-npu separately before this file. They must match the
+# Ascend CANN/driver/Python/CPU-architecture versions on the target server.
+transformers>=4.40
+sentencepiece>=0.2
+tiktoken>=0.13
+protobuf>=4.25
+numpy>=1.24
+pyyaml>=6.0
+setproctitle>=1.3
+tqdm>=4.66
+scikit-learn>=1.3
+sklearn-crfsuite>=0.3
+joblib>=1.3

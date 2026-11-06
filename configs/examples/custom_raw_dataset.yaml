@@ -1,0 +1,30 @@
+# Preprocess your original JSONL files into the standard training format.
+name: custom
+language: zh
+processed_dir: data/processed/custom
+labels:
+  - technique_a
+  - technique_b
+seed: 42
+id_eval_ratio: 0.1
+dev_ratio: 0.1
+merge_same_label_overlaps: false
+
+raw:
+  docs_format: jsonl
+  spans_source: inline
+  files:
+    train: data/raw/custom/train.jsonl
+    dev: data/raw/custom/dev.jsonl
+    eval: data/raw/custom/eval.jsonl
+  field_map:
+    id: id
+    text: text
+    spans: spans
+    span_start: start
+    span_end: end
+    span_technique: technique
+  offset_convention:
+    unit: char
+    base: 0
+    end_inclusive: false
